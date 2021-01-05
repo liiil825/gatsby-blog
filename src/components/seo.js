@@ -7,7 +7,7 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { Helmet, HelmetProvider } from "react-helmet-async"
+import Helmet from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
 
 const SEO = ({ description, lang, meta, title }) => {
@@ -31,49 +31,47 @@ const SEO = ({ description, lang, meta, title }) => {
   const defaultTitle = site.siteMetadata?.title
 
   return (
-    <HelmetProvider>
-      <Helmet
-        htmlAttributes={{
-          lang,
-        }}
-        title={title}
-        titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
-        meta={[
-          {
-            name: `description`,
-            content: metaDescription,
-          },
-          {
-            property: `og:title`,
-            content: title,
-          },
-          {
-            property: `og:description`,
-            content: metaDescription,
-          },
-          {
-            property: `og:type`,
-            content: `website`,
-          },
-          {
-            name: `twitter:card`,
-            content: `summary`,
-          },
-          {
-            name: `twitter:creator`,
-            content: site.siteMetadata?.social?.twitter || ``,
-          },
-          {
-            name: `twitter:title`,
-            content: title,
-          },
-          {
-            name: `twitter:description`,
-            content: metaDescription,
-          },
-        ].concat(meta)}
-      />
-    </HelmetProvider>
+    <Helmet
+      htmlAttributes={{
+        lang,
+      }}
+      title={title}
+      titleTemplate={defaultTitle ? `%s | ${defaultTitle}` : null}
+      meta={[
+        {
+          name: `description`,
+          content: metaDescription,
+        },
+        {
+          property: `og:title`,
+          content: title,
+        },
+        {
+          property: `og:description`,
+          content: metaDescription,
+        },
+        {
+          property: `og:type`,
+          content: `website`,
+        },
+        {
+          name: `twitter:card`,
+          content: `summary`,
+        },
+        {
+          name: `twitter:creator`,
+          content: site.siteMetadata?.social?.twitter || ``,
+        },
+        {
+          name: `twitter:title`,
+          content: title,
+        },
+        {
+          name: `twitter:description`,
+          content: metaDescription,
+        },
+      ].concat(meta)}
+    />
   )
 }
 

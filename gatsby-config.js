@@ -69,7 +69,7 @@ module.exports = {
         icon: `content/assets/gatsby-icon.png`,
       },
     },
-    `gatsby-plugin-react-helmet-async`,
+    `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-plugin-typography`,
