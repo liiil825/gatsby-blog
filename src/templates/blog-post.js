@@ -11,13 +11,13 @@ const BlogPostTemplate = ({ data, location }) => {
   const { previous, next } = data
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout className="" location={location} title={siteTitle}>
       <SEO
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
       <article
-        className="container mx-auto blog-post"
+        className="global-wrapper blog-post"
         itemScope
         itemType="http://schema.org/Article"
       >
