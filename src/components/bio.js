@@ -8,6 +8,7 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
+import { Link } from "gatsby"
 
 const Bio = () => {
   const data = useStaticQuery(graphql`
@@ -40,27 +41,42 @@ const Bio = () => {
   const avatar = data?.avatar?.childImageSharp?.fixed
 
   return (
-    <div className="bio flex items-center">
-      {avatar && (
-        <Image
-          fixed={avatar}
-          alt={author?.name || ``}
-          className="bio-avatar"
-          imgStyle={{
-            borderRadius: `50%`,
-          }}
-        />
-      )}
-      {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> {author?.summary || null}
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            You should follow them on Twitter
-          </a>
-        </p>
-      )}
-    </div>
+    <>
+    <nav className="bg-white dark:bg-gray-800 shadow">
+      <div className="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
+          <div className="flex justify-between items-center">
+              <div>
+                <Link to="/">
+                  <Image
+                    fixed={avatar}
+                    alt={author?.name || ``}
+                    className="bio-avatar"
+                    imgStyle={{
+                      borderRadius: `50%`,
+                    }}
+                  />
+                </Link>
+              </div>
+              
+              <div className="flex md:hidden">
+                  <button type="button" className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
+                      <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current">
+                          <path fillRule="evenodd" d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"></path>
+                      </svg>
+                  </button>
+              </div>
+          </div>
+
+          <div className="md:flex items-center">
+              <div className="flex flex-col md:flex-row md:mx-6">
+                  <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">Home</Link>
+                  <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">Contact</Link>
+                  <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">About</Link>
+              </div>
+          </div>
+      </div>
+    </nav>
+  </>
   )
 }
 
