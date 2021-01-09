@@ -1,7 +1,9 @@
 import React from "react"
 import { Link } from "gatsby"
+import Bio from "../components/bio"
+import SEO from "../components/seo"
 
-const Layout = ({ location, title, children }) => {
+const Layout = ({ location, title, children, langs }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   let header
@@ -22,6 +24,8 @@ const Layout = ({ location, title, children }) => {
 
   return (
     <div className="" data-is-root-path={isRootPath}>
+      <SEO title="" />
+      <Bio langs={langs} />
       <header />
       <main>{children}</main>
       <footer>

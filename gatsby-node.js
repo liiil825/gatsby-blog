@@ -19,6 +19,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             id
             fields {
               slug
+              langKey
             }
           }
         }
@@ -44,6 +45,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const { langKey } = post.fields
+      console.log(post.fields.slug)
+      console.log(langKey)
 
       createPage({
         path: post.fields.slug,
@@ -52,8 +56,23 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           id: post.id,
           previousPostId,
           nextPostId,
+          langKey
         },
       })
+    })
+    createPage({
+      path: '/en/',
+      component: path.resolve(`./src/pages/index.js`),
+      context: {
+        langKey: 'en'
+      },
+    })
+    createPage({
+      path: '/zh/',
+      component: path.resolve(`./src/pages/index.zh.js`),
+      context: {
+        langKey: 'zh'
+      },
     })
   }
 }
@@ -86,6 +105,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       author: Author
       siteUrl: String
       social: Social
+      languages: Lang
     }
 
     type Author {
@@ -95,6 +115,11 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Social {
       twitter: String
+    }
+
+    type Lang {
+      langs: [String]
+      defaultLangKey: String
     }
 
     type MarkdownRemark implements Node {

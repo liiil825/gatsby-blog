@@ -1,3 +1,5 @@
+const languages = require('./src/data/languages')
+
 module.exports = {
   siteMetadata: {
     title: `山不在高`,
@@ -10,6 +12,7 @@ module.exports = {
     social: {
       twitter: `VoskiLee`,
     },
+    languages
   },
   plugins: [
     {
@@ -76,6 +79,16 @@ module.exports = {
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
+    },
+    `gatsby-plugin-react-helmet`,
+    {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyForNull: 'any',
+        langKeyDefault: languages.defaultLangKey,
+        useLangKeyLayout: false,
+        pagesPaths: [`${__dirname}/content/blog`],
+      }
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline

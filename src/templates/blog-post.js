@@ -1,21 +1,22 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
+import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n';
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
+  const url = location.pathname;
+  const { langs, defaultLangKey } = data.site.siteMetadata.languages;
+  const langKey = getCurrentLangKey(langs, defaultLangKey, url);
+  const homeLink = `/${langKey}/`;
+  const langUrl = getUrlForLang(homeLink, url)
+  const langsMenu = getLangs(langs, langKey, langUrl);
 
   return (
-    <Layout className="" location={location} title={siteTitle}>
-      <SEO
-        title={post.frontmatter.title}
-        description={post.frontmatter.description || post.excerpt}
-      />
+    <Layout langs={langsMenu} className="" location={location} title={siteTitle}>
       <article
         className="global-wrapper blog-post"
         itemScope
@@ -31,7 +32,6 @@ const BlogPostTemplate = ({ data, location }) => {
         />
         <hr />
         <footer>
-          <Bio />
         </footer>
       </article>
       <nav className="blog-post-nav">
@@ -75,6 +75,10 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        languages {
+          defaultLangKey
+          langs
+        }
       }
     }
     markdownRemark(id: { eq: $id }) {
