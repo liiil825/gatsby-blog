@@ -2,7 +2,7 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import { getBlogUrl, createLanguagesObject, getLangKey } from '../utils/localization'
+import { initLangMenu } from '../utils/localization'
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -10,22 +10,17 @@ const BlogPostTemplate = ({ data, location }) => {
   const { languages } = data.site.siteMetadata
   const { defaultLangKey } = languages
   const { previous, next } = data
-  const lang = getLangKey(location.pathname, languages)
-  let prevUrl = ''
-  if (previous) {
-    prevUrl = getBlogUrl(lang, defaultLangKey, previous.fields.slug)
-    console.log('slug:', previous.fields.slug)
-    console.log('prevUrl:', prevUrl)
-  }
-  let nextUrl = ''
-  if (next) {
-    nextUrl = getBlogUrl(lang, defaultLangKey, next.fields.slug)
-    console.log('slug:', next.fields.slug)
-    console.log('nextUrl:', nextUrl)
-  }
+  const { pathname } = location
+  const langObj = initLangMenu({
+    pathname,
+    ...languages,
+    previous,
+    next,
+  })
+  console.log(langObj.navMenus)
 
   return (
-    <Layout className="" location={location} title={siteTitle}>
+    <Layout navMenus={langObj.navMenus} className="" location={location} title={siteTitle}>
       <article
         className="global-wrapper blog-post"
         itemScope
@@ -55,14 +50,14 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <li>
             {previous && (
-              <Link to={prevUrl} rel="prev">
+              <Link to={langObj.prevUrl} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={nextUrl} rel="next">
+              <Link to={langObj.nextUrl} rel="next">
                 {next.frontmatter.title} →
               </Link>
             )}

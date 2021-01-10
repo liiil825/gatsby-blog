@@ -46,7 +46,7 @@ const Language = ({ langs = [] }) => {
               className={
                 "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
               }
-              to={lang.link} key={lang.langKey}>
+              to={lang.url} key={lang.langKey}>
                 {lang.langKey}
             </Link>
           ))

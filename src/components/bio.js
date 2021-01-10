@@ -11,7 +11,7 @@ import Image from "gatsby-image"
 import { Link } from "gatsby"
 import NavBar from './dropdown-language'
 
-const Bio = ({ langs }) => {
+const Bio = ({ navMenus }) => {
   const data = useStaticQuery(graphql`
     query BioQuery {
       avatar: file(absolutePath: { regex: "/logo.jpg/" }) {
@@ -34,7 +34,7 @@ const Bio = ({ langs }) => {
       }
     }
   `)
-  console.log(langs)
+  console.log(navMenus)
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
@@ -62,7 +62,7 @@ const Bio = ({ langs }) => {
               </div>
               
               <div className="flex flex-col items-center md:flex-row md:mx-6">
-                  <NavBar langs={langs} />
+                  <NavBar langs={navMenus} />
                   <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">Home</Link>
                   <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">Contact</Link>
                   <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">About</Link>

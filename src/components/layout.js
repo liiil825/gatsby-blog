@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import Bio from "../components/bio"
 import SEO from "../components/seo"
 
-const Layout = ({ location, title, children, langs }) => {
+const Layout = ({ location, title, children, navMenus }) => {
   const rootPath = `${__PATH_PREFIX__}/`
   const isRootPath = location.pathname === rootPath
   let header
@@ -25,7 +25,7 @@ const Layout = ({ location, title, children, langs }) => {
   return (
     <div className="" data-is-root-path={isRootPath}>
       <SEO title="" />
-      <Bio langs={langs} />
+      <Bio navMenus={navMenus} />
       <header />
       <main>{children}</main>
       <footer className="global-wrapper flex">
