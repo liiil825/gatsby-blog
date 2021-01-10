@@ -30,7 +30,7 @@ const LanguageDropdown = ({ langs = [] }) => {
         }}
       >
         <div className="items-center flex">
-          <FormattedMessage id="Language" default="Language"/>
+          <FormattedMessage id="Translations" default="Translations"/>
         </div>
       </a>
       <div
@@ -42,7 +42,7 @@ const LanguageDropdown = ({ langs = [] }) => {
         style={{ minWidth: "12rem" }}
       >
         {
-          langs.map(lang => (
+          langs.filter(lang => !lang.selected).map(lang => (
             <Link 
               className={
                 `text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-primary hover:text-white ${lang.selected ? 'bg-primary text-white' : ''}`

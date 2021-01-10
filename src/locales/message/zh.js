@@ -1,6 +1,7 @@
 module.exports = {
   'selectLanguage': '请选择语言',
   'Language': '语言',
+  'Translations': '多语言',
   'Home': '首页',
   'Contact': '联系',
   'About': '关于',

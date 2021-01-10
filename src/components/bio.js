@@ -9,7 +9,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 import { Link } from "gatsby"
-import NavBar from './dropdown-language'
+import NavLang from './dropdown-language'
 import { FormattedMessage } from 'react-intl'
 
 const Bio = ({ navMenus, langs = {} }) => {
@@ -63,7 +63,7 @@ const Bio = ({ navMenus, langs = {} }) => {
               </div>
               
               <div className="flex flex-col items-center md:flex-row md:mx-6">
-                  <NavBar langs={navMenus} />
+                  <NavLang langs={navMenus} />
                   <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">
                     <FormattedMessage id="Home" defaultMessage="Home" />
                   </Link>
