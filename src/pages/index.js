@@ -1,19 +1,25 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { getBlogUrl, createLanguagesObject, getCurrentLangKey } from '../utils/localization'
+import { getBlogUrl, initLangMenu } from '../utils/localization'
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   let posts = data.allMarkdownRemark.nodes
-  const { defaultLangKey } = data.site.siteMetadata.languages
+  const { languages } = data.site.siteMetadata
+  const { defaultLangKey } = languages
+  const { pathname } = location
+  const langObj = initLangMenu({
+    pathname,
+    ...languages,
+  })
+  console.log(langObj.navMenus)
 
   if (posts.length === 0) {
     return (
-      <Layout location={location} title={siteTitle}>
+      <Layout navMenus={langObj.navMenus} location={location} title={siteTitle}>
         <SEO title="" />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
@@ -25,7 +31,7 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout navMenus={langObj.navMenus} location={location} title={siteTitle}>
       <SEO title="" />
       <ol className="global-wrapper" style={{ listStyle: `none` }}>
         {posts.map(post => {
@@ -67,7 +73,9 @@ const BlogIndex = ({ data, location }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query {
+  query (
+    $langRegex: String = "/.zh/"
+  ) {
     site {
       siteMetadata {
         title
@@ -80,7 +88,7 @@ export const pageQuery = graphql`
     allMarkdownRemark (
       filter: {
         fields: {
-          slug: { regex: "/.zh/" }
+          slug: { regex: $langRegex }
         }
       }
       sort: { fields: [frontmatter___date], order: DESC }

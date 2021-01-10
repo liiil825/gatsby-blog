@@ -1,9 +1,10 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const createBlog = require('./createPages/blog')
+const commonPage = require('./createPages/common')
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  await Promise.all([createBlog({ graphql, actions, reporter })])
+exports.createPages = async (props) => {
+  await Promise.all([createBlog(props), commonPage(props)])
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.com/docs/use-static-query/
  */
 
-import React, { useState } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "gatsby-image"
 import { Link } from "gatsby"
@@ -38,10 +38,8 @@ const Bio = ({ navMenus }) => {
 
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
-  const social = data.site.siteMetadata?.social
-
+  // const social = data.site.siteMetadata?.social
   const avatar = data?.avatar?.childImageSharp?.fixed
-  const [isExpanded, toggleExpansion] = useState(false)
 
   return (
     <>

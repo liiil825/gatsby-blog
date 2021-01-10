@@ -35,7 +35,6 @@ const query = (lang) => (
   `
 )
 
-
 module.exports =  ({ graphql, actions, reporter }) => 
   new Promise(resolve => {
     const { createPage } = actions

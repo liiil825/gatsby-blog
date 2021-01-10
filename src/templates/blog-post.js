@@ -8,7 +8,6 @@ const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { languages } = data.site.siteMetadata
-  const { defaultLangKey } = languages
   const { previous, next } = data
   const { pathname } = location
   const langObj = initLangMenu({
