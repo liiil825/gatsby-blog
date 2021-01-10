@@ -1,28 +1,19 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n';
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import { getBlogUrl, createLanguagesObject, getCurrentLangKey } from '../utils/localization'
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   let posts = data.allMarkdownRemark.nodes
-
-  const url = location.pathname;
-  const { langs, defaultLangKey } = data.site.siteMetadata.languages;
-  const langKey = getCurrentLangKey(langs, defaultLangKey, url);
-  const homeLink = `/${langKey}/`;
-  const langsMenu = getLangs(langs, langKey, getUrlForLang(homeLink, url));
-
-  posts = posts.filter(p => {
-    return p.fields.slug.includes(langKey)
-  })
+  const { defaultLangKey } = data.site.siteMetadata.languages
 
   if (posts.length === 0) {
     return (
-      <Layout langs={langsMenu} location={location} title={siteTitle}>
+      <Layout location={location} title={siteTitle}>
         <SEO title="" />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
@@ -34,11 +25,12 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout langs={langsMenu} location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle}>
       <SEO title="" />
       <ol className="global-wrapper" style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
+          const blogUrl = getBlogUrl(defaultLangKey, defaultLangKey, post.fields.slug)
 
           return (
             <li key={post.fields.slug}>
@@ -49,7 +41,7 @@ const BlogIndex = ({ data, location }) => {
               >
                 <header>
                   <h2>
-                    <Link to={post.fields.slug} itemProp="url">
+                    <Link to={blogUrl} itemProp="url">
                       <span itemProp="headline">{title}</span>
                     </Link>
                   </h2>
@@ -85,7 +77,14 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark (
+      filter: {
+        fields: {
+          slug: { regex: "/.zh/" }
+        }
+      }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       nodes {
         excerpt
         fields {

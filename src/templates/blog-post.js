@@ -1,22 +1,31 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n';
 
 import Layout from "../components/layout"
+import { getBlogUrl, createLanguagesObject, getLangKey } from '../utils/localization'
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
+  const { languages } = data.site.siteMetadata
+  const { defaultLangKey } = languages
   const { previous, next } = data
-  const url = location.pathname;
-  const { langs, defaultLangKey } = data.site.siteMetadata.languages;
-  const langKey = getCurrentLangKey(langs, defaultLangKey, url);
-  const homeLink = `/${langKey}/`;
-  const langUrl = getUrlForLang(homeLink, url)
-  const langsMenu = getLangs(langs, langKey, langUrl);
+  const lang = getLangKey(location.pathname, languages)
+  let prevUrl = ''
+  if (previous) {
+    prevUrl = getBlogUrl(lang, defaultLangKey, previous.fields.slug)
+    console.log('slug:', previous.fields.slug)
+    console.log('prevUrl:', prevUrl)
+  }
+  let nextUrl = ''
+  if (next) {
+    nextUrl = getBlogUrl(lang, defaultLangKey, next.fields.slug)
+    console.log('slug:', next.fields.slug)
+    console.log('nextUrl:', nextUrl)
+  }
 
   return (
-    <Layout langs={langsMenu} className="" location={location} title={siteTitle}>
+    <Layout className="" location={location} title={siteTitle}>
       <article
         className="global-wrapper blog-post"
         itemScope
@@ -34,7 +43,7 @@ const BlogPostTemplate = ({ data, location }) => {
         <footer>
         </footer>
       </article>
-      <nav className="blog-post-nav">
+      <nav className="global-wrapper blog-post-nav">
         <ul
           style={{
             display: `flex`,
@@ -46,14 +55,14 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.fields.slug} rel="prev">
+              <Link to={prevUrl} rel="prev">
                 ← {previous.frontmatter.title}
               </Link>
             )}
           </li>
           <li>
             {next && (
-              <Link to={next.fields.slug} rel="next">
+              <Link to={nextUrl} rel="next">
                 {next.frontmatter.title} →
               </Link>
             )}
@@ -69,8 +78,8 @@ export default BlogPostTemplate
 export const pageQuery = graphql`
   query BlogPostBySlug(
     $id: String!
-    $previousPostId: String
-    $nextPostId: String
+    $prevId: String
+    $nextId: String
   ) {
     site {
       siteMetadata {
@@ -87,11 +96,12 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "YYYY/MM/DD")
         description
       }
     }
-    previous: markdownRemark(id: { eq: $previousPostId }) {
+    previous: markdownRemark(id: { eq: $prevId }) {
+      id
       fields {
         slug
       }
@@ -99,7 +109,8 @@ export const pageQuery = graphql`
         title
       }
     }
-    next: markdownRemark(id: { eq: $nextPostId }) {
+    next: markdownRemark(id: { eq: $nextId }) {
+      id
       fields {
         slug
       }

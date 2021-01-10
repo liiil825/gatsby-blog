@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n';
+import { getCurrentLangKey, getLangs, getUrlForLang } from 'ptz-i18n'
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
@@ -9,20 +9,11 @@ import SEO from "../components/seo"
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   let posts = data.allMarkdownRemark.nodes
-
-  const url = location.pathname;
-  const { langs, defaultLangKey } = data.site.siteMetadata.languages;
-  const langKey = getCurrentLangKey(langs, defaultLangKey, url);
-  const homeLink = `/${langKey}/`;
-  const langsMenu = getLangs(langs, langKey, getUrlForLang(homeLink, url));
-
-  posts = posts.filter(p => {
-    return p.fields.slug.includes(langKey)
-  })
+  posts.filter()
 
   if (posts.length === 0) {
     return (
-      <Layout langs={langsMenu} location={location} title={siteTitle}>
+      <Layout location={location} title={siteTitle}>
         <SEO title="" />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
@@ -34,7 +25,7 @@ const BlogIndex = ({ data, location }) => {
   }
 
   return (
-    <Layout langs={langsMenu} location={location} title={siteTitle}>
+    <Layout location={location} title={siteTitle}>
       <SEO title="" />
       <ol className="global-wrapper" style={{ listStyle: `none` }}>
         {posts.map(post => {

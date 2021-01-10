@@ -28,7 +28,7 @@ const Layout = ({ location, title, children, langs }) => {
       <Bio langs={langs} />
       <header />
       <main>{children}</main>
-      <footer>
+      <footer className="global-wrapper flex">
         © {new Date().getFullYear()}
       </footer>
     </div>

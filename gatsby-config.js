@@ -1,4 +1,4 @@
-const languages = require('./src/data/languages')
+const languages = require('./data/languages')
 
 module.exports = {
   siteMetadata: {
@@ -81,15 +81,6 @@ module.exports = {
       },
     },
     `gatsby-plugin-react-helmet`,
-    {
-      resolve: 'gatsby-plugin-i18n',
-      options: {
-        langKeyForNull: 'any',
-        langKeyDefault: languages.defaultLangKey,
-        useLangKeyLayout: false,
-        pagesPaths: [`${__dirname}/content/blog`],
-      }
-    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
