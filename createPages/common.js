@@ -5,7 +5,7 @@
  */
 
 // You can delete this file if you're not using it
-const { langs, defaultLangKey } = require('../data/languages')
+const { langs, defaultLangKey } = require('../src/locales/languages')
 const path = require('path')
 
 const pages = [{

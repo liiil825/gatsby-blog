@@ -1,37 +1,32 @@
 import React from "react"
-import { Link } from "gatsby"
 import Bio from "../components/bio"
 import SEO from "../components/seo"
+import { IntlProvider } from 'react-intl'
+import messages from '../locales'
 
-const Layout = ({ location, title, children, navMenus }) => {
-  const rootPath = `${__PATH_PREFIX__}/`
-  const isRootPath = location.pathname === rootPath
-  let header
+import 'intl'
 
-  if (isRootPath) {
-    header = (
-      <h1 className="main-heading">
-        <Link to="/">{title}</Link>
-      </h1>
-    )
-  } else {
-    header = (
-      <Link className="header-link-home" to="/">
-        {title}
-      </Link>
-    )
-  }
-
+const Layout = ({ location, title, children, navMenus, langs }) => {
+  const { langKey } = langs
+  console.log('message:', messages)
+  console.log('langKey:', langKey)
+  console.log('messages[langKey]:', messages[langKey])
   return (
-    <div className="" data-is-root-path={isRootPath}>
-      <SEO title="" />
-      <Bio navMenus={navMenus} />
-      <header />
-      <main>{children}</main>
-      <footer className="global-wrapper flex">
-        © {new Date().getFullYear()}
-      </footer>
-    </div>
+    <IntlProvider
+      locale={langKey}
+      key={langs.defaultLangKey}
+      messages={messages[langKey]}
+    >
+      <div className="">
+        <SEO title="" />
+        <Bio navMenus={navMenus} langs={langs} />
+        <header />
+        <main>{children}</main>
+        <footer className="global-wrapper flex">
+          © {new Date().getFullYear()}
+        </footer>
+      </div>
+    </IntlProvider>
   )
 }
 

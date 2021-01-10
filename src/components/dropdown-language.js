@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "gatsby"
 import Popper from "popper.js";
+import { FormattedMessage } from 'react-intl'
 
-const Language = ({ langs = [] }) => {
+const LanguageDropdown = ({ langs = [] }) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -16,7 +17,7 @@ const Language = ({ langs = [] }) => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   }
-  console.log('nav:', langs)
+  console.log(langs)
   return (
     <>
       <a
@@ -29,7 +30,7 @@ const Language = ({ langs = [] }) => {
         }}
       >
         <div className="items-center flex">
-          Language
+          <FormattedMessage id="Language" default="Language"/>
         </div>
       </a>
       <div
@@ -44,10 +45,10 @@ const Language = ({ langs = [] }) => {
           langs.map(lang => (
             <Link 
               className={
-                "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+                `text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-primary hover:text-white ${lang.selected ? 'bg-primary text-white' : ''}`
               }
               to={lang.url} key={lang.langKey}>
-                {lang.langKey}
+                <FormattedMessage id={lang.langKey} />
             </Link>
           ))
 
@@ -57,4 +58,4 @@ const Language = ({ langs = [] }) => {
   );
 };
 
-export default Language;
+export default LanguageDropdown;

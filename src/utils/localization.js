@@ -39,7 +39,7 @@ const getLangUrl = (url, { langKey = '', langs, defaultLangKey }) => {
     .replace(new RegExp(`^/${defaultLangKey}`), '')
 }
 
-const getLangKeyFromUrl = (url, { langKey, langs, defaultLangKey }) => {
+const getLangKeyFromUrl = (url, { langs, defaultLangKey }) => {
   let result = defaultLangKey
   langs.forEach(lang => {
     if (new RegExp(`/${lang}/`).test(url)) {

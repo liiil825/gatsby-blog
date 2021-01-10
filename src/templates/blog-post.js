@@ -4,12 +4,13 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import { initLangMenu } from '../utils/localization'
 
-const BlogPostTemplate = ({ data, location }) => {
+const BlogPostTemplate = ({ data, location, pageContext }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { languages } = data.site.siteMetadata
   const { previous, next } = data
   const { pathname } = location
+  languages.langKey = pageContext.langKey
   const langObj = initLangMenu({
     pathname,
     ...languages,
@@ -19,7 +20,7 @@ const BlogPostTemplate = ({ data, location }) => {
   console.log(langObj.navMenus)
 
   return (
-    <Layout navMenus={langObj.navMenus} className="" location={location} title={siteTitle}>
+    <Layout navMenus={langObj.navMenus} langs={languages} className="" location={location} title={siteTitle}>
       <article
         className="global-wrapper blog-post"
         itemScope

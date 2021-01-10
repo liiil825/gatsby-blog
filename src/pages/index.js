@@ -4,39 +4,47 @@ import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { getBlogUrl, initLangMenu } from '../utils/localization'
+import messages from '../locales'
 
-const BlogIndex = ({ data, location }) => {
+const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   let posts = data.allMarkdownRemark.nodes
   const { languages } = data.site.siteMetadata
   const { defaultLangKey } = languages
   const { pathname } = location
+  const { langKey = languages.defaultLangKey } = pageContext
+  languages.langKey = langKey
   const langObj = initLangMenu({
     pathname,
     ...languages,
   })
-  console.log(langObj.navMenus)
-
   if (posts.length === 0) {
     return (
-      <Layout navMenus={langObj.navMenus} location={location} title={siteTitle}>
+      <Layout
+        navMenus={langObj.navMenus}
+        langs={languages}
+        location={location}
+        title={siteTitle}>
         <SEO title="" />
         <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
+          {messages[langKey]['No blog posts']}  
         </p>
       </Layout>
     )
   }
 
   return (
-    <Layout navMenus={langObj.navMenus} location={location} title={siteTitle}>
+    <Layout
+      navMenus={langObj.navMenus}
+      langs={languages}
+      location={location}
+      title={siteTitle}
+    >
       <SEO title="" />
       <ol className="global-wrapper" style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
-          const blogUrl = getBlogUrl(defaultLangKey, defaultLangKey, post.fields.slug)
+          const blogUrl = getBlogUrl(langKey, defaultLangKey, post.fields.slug)
 
           return (
             <li key={post.fields.slug}>

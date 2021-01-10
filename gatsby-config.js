@@ -1,4 +1,4 @@
-const languages = require('./data/languages')
+const languages = require('./src/locales/languages')
 
 module.exports = {
   siteMetadata: {
