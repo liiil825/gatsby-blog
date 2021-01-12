@@ -8,6 +8,7 @@
       ]
     }],
     "block-no-empty": null,
-    "unit-whitelist": ["%", "vw", "em", "rem", "s"]
+    "ignoreFiles": [],
+    "unit-whitelist": ["%", "vw", "vh", "em", "rem", "s"]
   }
 }
