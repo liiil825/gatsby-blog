@@ -42,6 +42,7 @@ const Bio = ({ navMenus, langs = {} }) => {
   const avatar = data?.avatar?.childImageSharp?.fixed
   const { langKey, defaultLangKey } = langs
   const homeUrl = langKey === defaultLangKey ? '/' : `/${langKey}/`
+  const linkClass = 'my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0'
 
   return (
     <>
@@ -62,17 +63,17 @@ const Bio = ({ navMenus, langs = {} }) => {
               </div>
               
               <div className="flex flex-col items-center md:flex-row md:mx-6">
-                  <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">
+                  <Link className={linkClass} to="#">
                     <FormattedMessage id="Home" defaultMessage="Home" />
                   </Link>
-                  <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">
+                  <Link className={linkClass} to="#">
                     <FormattedMessage id="Contact" defaultMessage="Contact" />
                   </Link>
-                  <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">
+                  <Link className={linkClass} to="#">
                     <FormattedMessage id="About" defaultMessage="About" />
                   </Link>
-                  <NavLang langs={navMenus} />
-                  <DarkButton />
+                  <NavLang className={linkClass} langs={navMenus} />
+                  <DarkButton className={linkClass} />
               </div>
           </div>
       </div>

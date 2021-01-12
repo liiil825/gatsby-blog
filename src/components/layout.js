@@ -17,11 +17,11 @@ const Layout = ({ location, title, children, navMenus, langs, author = { name: '
       messages={messages[langKey]}
     >
       <ThemeProvider>
-        <div className="bg-primary text-primary min-h-screen">
+        <div className="bg-primary text-primary">
           <SEO title="" />
           <Bio navMenus={navMenus} langs={langs} />
           <header />
-          <main>{children}</main>
+          <main className="min-h-body">{children}</main>
           <footer className="global-wrapper flex justify-center">
             Copyright © {new Date().getFullYear()} {author?.name}
           </footer>

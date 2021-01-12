@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import { createPopper } from "@popperjs/core";
 import { FormattedMessage } from 'react-intl'
 
-const LanguageDropdown = ({ langs = [] }) => {
+const LanguageDropdown = ({ langs = [], className }) => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
@@ -20,7 +20,7 @@ const LanguageDropdown = ({ langs = [] }) => {
   return (
     <>
       <a
-        className="text-gray-600 block"
+        className={className}
         href="#pablo"
         ref={btnDropdownRef}
         onClick={e => {
@@ -44,7 +44,7 @@ const LanguageDropdown = ({ langs = [] }) => {
           langs.filter(lang => !lang.selected).map(lang => (
             <Link 
               className={
-                `text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-primary hover:text-white ${lang.selected ? 'bg-primary text-white' : ''}`
+                `text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-primary dark:hover:text-white dark:hover:color-primary`
               }
               to={lang.url} key={lang.langKey}>
                 <FormattedMessage id={lang.langKey} />

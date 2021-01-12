@@ -61,7 +61,7 @@
 }
 
 .dark {
-  --color-bg-primary: #2d3748;
+  --color-bg-primary: #202020;
   --color-bg-secondary: #283141;
   --color-text-primary: #f7fafc;
   --color-text-secondary: #e2e8f0;
@@ -335,7 +335,7 @@ a:focus {
 
 /* Media queries */
 
-/* @media (max-width: 42rem) {
+@media (max-width: 42rem) {
   blockquote {
     padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-4);
     margin-left: var(--spacing-0);
@@ -344,4 +344,8 @@ a:focus {
   ol {
     list-style-position: inside;
   }
-} */
+}
+
+.min-h-body {
+  min-height: calc(100vh - 5rem);
+}

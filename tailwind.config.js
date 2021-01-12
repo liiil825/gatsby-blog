@@ -19,11 +19,9 @@ module.exports = {
       },
     },
   },
-  extend: {
-    spacing: {
-      128: '32rem',
-    },
-  },
+  extend: {},
   variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/custom-forms'),
+  ],
 }
