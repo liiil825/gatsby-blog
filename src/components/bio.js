@@ -35,8 +35,6 @@ const Bio = ({ navMenus, langs = {} }) => {
       }
     }
   `)
-  console.log(langs)
-
   // Set these values by editing "siteMetadata" in gatsby-config.js
   const author = data.site.siteMetadata?.author
   // const social = data.site.siteMetadata?.social
@@ -63,7 +61,6 @@ const Bio = ({ navMenus, langs = {} }) => {
               </div>
               
               <div className="flex flex-col items-center md:flex-row md:mx-6">
-                  <NavLang langs={navMenus} />
                   <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">
                     <FormattedMessage id="Home" defaultMessage="Home" />
                   </Link>
@@ -73,6 +70,7 @@ const Bio = ({ navMenus, langs = {} }) => {
                   <Link className="my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0" to="#">
                     <FormattedMessage id="About" defaultMessage="About" />
                   </Link>
+                  <NavLang langs={navMenus} />
               </div>
           </div>
       </div>

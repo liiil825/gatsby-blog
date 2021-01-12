@@ -6,11 +6,9 @@ import messages from '../locales'
 
 import 'intl'
 
-const Layout = ({ location, title, children, navMenus, langs }) => {
+const Layout = ({ location, title, children, navMenus, langs, author = { name: '' } }) => {
   const { langKey } = langs
-  console.log('message:', messages)
-  console.log('langKey:', langKey)
-  console.log('messages[langKey]:', messages[langKey])
+
   return (
     <IntlProvider
       locale={langKey}
@@ -22,8 +20,8 @@ const Layout = ({ location, title, children, navMenus, langs }) => {
         <Bio navMenus={navMenus} langs={langs} />
         <header />
         <main>{children}</main>
-        <footer className="global-wrapper flex">
-          © {new Date().getFullYear()}
+        <footer className="global-wrapper flex justify-center">
+          Copyright © {new Date().getFullYear()} {author?.name}
         </footer>
       </div>
     </IntlProvider>

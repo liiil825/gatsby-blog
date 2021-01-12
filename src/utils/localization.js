@@ -69,7 +69,6 @@ const initLangMenu = ({
  }) => {
   let url = pathname
   const navMenus = getLangMenus(url, langs, defaultLangKey)
-  console.log(langs, defaultLangKey)
   let langKey = getLangKeyFromUrl(url, { langs, defaultLangKey })
   let prevUrl = !previous ? '' : localizeUrl(`/${prefix}${previous.fields.slug}`, langKey, defaultLangKey)
   let nextUrl = !next ? '' : localizeUrl(`/${prefix}${next.fields.slug}`, langKey, defaultLangKey)

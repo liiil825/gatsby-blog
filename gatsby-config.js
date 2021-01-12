@@ -4,7 +4,7 @@ module.exports = {
   siteMetadata: {
     title: `山不在高`,
     author: {
-      name: `李智`,
+      name: `lizhi`,
       summary: `吾生也有涯，而知也无涯。以有涯随无涯，殆已！`,
     },
     description: `A starter blog demonstrating what Gatsby can do.`,

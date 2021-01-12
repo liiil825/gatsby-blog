@@ -9,7 +9,7 @@ import messages from '../locales'
 const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   let posts = data.allMarkdownRemark.nodes
-  const { languages } = data.site.siteMetadata
+  const { languages, author } = data.site.siteMetadata
   const { defaultLangKey } = languages
   const { pathname } = location
   const { langKey = languages.defaultLangKey } = pageContext
@@ -39,6 +39,7 @@ const BlogIndex = ({ data, location, pageContext }) => {
       langs={languages}
       location={location}
       title={siteTitle}
+      author={author}
     >
       <SEO title="" />
       <ol className="global-wrapper" style={{ listStyle: `none` }}>
@@ -87,6 +88,9 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+        author {
+          name
+        }
         languages {
           defaultLangKey
           langs

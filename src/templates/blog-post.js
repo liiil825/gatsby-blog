@@ -17,7 +17,6 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
     previous,
     next,
   })
-  console.log(langObj.navMenus)
 
   return (
     <Layout navMenus={langObj.navMenus} langs={languages} className="" location={location} title={siteTitle}>

@@ -17,7 +17,6 @@ const LanguageDropdown = ({ langs = [] }) => {
   const closeDropdownPopover = () => {
     setDropdownPopoverShow(false);
   }
-  console.log(langs)
   return (
     <>
       <a
@@ -30,7 +29,7 @@ const LanguageDropdown = ({ langs = [] }) => {
         }}
       >
         <div className="items-center flex">
-          <FormattedMessage id="Translations" default="Translations"/>
+          <FormattedMessage id="Translations" defaultMessage="Translations"/>
         </div>
       </a>
       <div
