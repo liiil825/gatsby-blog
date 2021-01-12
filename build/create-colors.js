@@ -28,11 +28,22 @@ const data = `:root {
 .dark {
   --color-bg-primary: #0b1013;
   --color-bg-secondary: #283141;
-  --color-text-primary: #f7fafc;
+  --color-primary: var(--denim-600);
+  --color-text-primary: var(--denim-800);
   --color-text-secondary: #e2e8f0;
   --color-text-accent: #81e6d9;
-  --color-heading: #e2e8f0;
-  --color-heading-black: #f7fafc;
+  --color-heading: var(--denim-800);
+  --color-heading-black: var(--denim-900);
+}
+
+.dark h1,
+.dark h2,
+.dark h3,
+.dark h4,
+.dark h5,
+.dark h6 {
+  --color-heading: var(--denim-800);
+  --color-heading-black: var(--denim-800);
 }
 
 .light {

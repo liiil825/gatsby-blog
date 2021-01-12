@@ -44,7 +44,7 @@ const LanguageDropdown = ({ langs = [], className }) => {
           langs.filter(lang => !lang.selected).map(lang => (
             <Link 
               className={
-                `text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-royalblue-500 hover:text-white  dark:hover:text-white dark:hover:color-primary`
+                `text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-denim-500 hover:text-white  dark:hover:text-white dark:hover:color-primary`
               }
               to={lang.url} key={lang.langKey}>
                 <FormattedMessage id={lang.langKey} />
