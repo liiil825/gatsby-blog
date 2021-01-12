@@ -26,7 +26,7 @@ const data = `:root {
 }
 
 .dark {
-  --color-bg-primary: #202020;
+  --color-bg-primary: #0b1013;
   --color-bg-secondary: #283141;
   --color-text-primary: #f7fafc;
   --color-text-secondary: #e2e8f0;
@@ -44,7 +44,7 @@ const data = `:root {
 }
 `
 
-fs.writeFile('colors.css', data, function (err) {
+fs.writeFile('../src/css/colors.css', data, function (err) {
   if (err) return console.log(err);
   console.log('finish!!!');
 });

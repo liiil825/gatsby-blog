@@ -20,7 +20,7 @@ module.exports = {
           '700': 'var(--color-denim-700)',
           '800': 'var(--color-denim-800)',
           '900': 'var(--color-denim-900)',
-      },
+        },
         royalblue: {
           '50': 'var(--color-royalblue-50)',
           '100': 'var(--color-royalblue-100)',
@@ -32,7 +32,7 @@ module.exports = {
           '700': 'var(--color-royalblue-700)',
           '800': 'var(--color-royalblue-800)',
           '900': 'var(--color-royalblue-900)',
-      },
+        },
         flamingo: {
           '50': 'var(--color-flamingo-50)',
           '100': 'var(--color-flamingo-100)',
@@ -44,7 +44,7 @@ module.exports = {
           '700': 'var(--color-flamingo-700)',
           '800': 'var(--color-flamingo-800)',
           '900': 'var(--color-flamingo-900)',
-      },
+        },
         cerise: {
           '50': 'var(--color-cerise-50)',
           '100': 'var(--color-cerise-100)',
@@ -56,7 +56,7 @@ module.exports = {
           '700': 'var(--color-cerise-700)',
           '800': 'var(--color-cerise-800)',
           '900': 'var(--color-cerise-900)',
-      },
+        },
         sunset: {
           '50': 'var(--color-sunset-50)',
           '100': 'var(--color-sunset-100)',
@@ -68,7 +68,7 @@ module.exports = {
           '700': 'var(--color-sunset-700)',
           '800': 'var(--color-sunset-800)',
           '900': 'var(--color-sunset-900)',
-      },
+        },
         mango: {
           '50': 'var(--color-mango-50)',
           '100': 'var(--color-mango-100)',
@@ -80,7 +80,7 @@ module.exports = {
           '700': 'var(--color-mango-700)',
           '800': 'var(--color-mango-800)',
           '900': 'var(--color-mango-900)',
-      },
+        },
         carrot: {
           '50': 'var(--color-carrot-50)',
           '100': 'var(--color-carrot-100)',
@@ -92,7 +92,7 @@ module.exports = {
           '700': 'var(--color-carrot-700)',
           '800': 'var(--color-carrot-800)',
           '900': 'var(--color-carrot-900)',
-      },
+        },
         orange: {
           '50': 'var(--color-orange-50)',
           '100': 'var(--color-orange-100)',
@@ -104,7 +104,7 @@ module.exports = {
           '700': 'var(--color-orange-700)',
           '800': 'var(--color-orange-800)',
           '900': 'var(--color-orange-900)',
-      },
+        },
         green: {
           '50': 'var(--color-green-50)',
           '100': 'var(--color-green-100)',
@@ -116,7 +116,7 @@ module.exports = {
           '700': 'var(--color-green-700)',
           '800': 'var(--color-green-800)',
           '900': 'var(--color-green-900)',
-      },
+        },
         cerulean: {
           '50': 'var(--color-cerulean-50)',
           '100': 'var(--color-cerulean-100)',
@@ -128,8 +128,7 @@ module.exports = {
           '700': 'var(--color-cerulean-700)',
           '800': 'var(--color-cerulean-800)',
           '900': 'var(--color-cerulean-900)',
-      },
-
+        },
       },
       backgroundColor: {
         primary: "var(--color-bg-primary)",

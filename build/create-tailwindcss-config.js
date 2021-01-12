@@ -14,7 +14,7 @@ for (key in colors) {
           '${num}': 'var(--color-${key}-${num})',`
   }
   tempStr = `${tempStr}
-      },
+        },
 `
 }
 
@@ -29,8 +29,7 @@ const data = `module.exports = {
     },
     extend: {
       colors: {
-${tempStr}
-      },
+${tempStr}      },
       backgroundColor: {
         primary: "var(--color-bg-primary)",
         secondary: "var(--color-bg-secondary)",
@@ -50,7 +49,7 @@ ${tempStr}
 }
 `
 
-fs.writeFile('tailwind.config.js', data, function (err) {
+fs.writeFile('../tailwind.config.js', data, function (err) {
   if (err) return console.log(err);
   console.log('finish!!!');
 });

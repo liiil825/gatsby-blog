@@ -36,7 +36,7 @@
   --fontWeight-bold: 700;
   --fontWeight-extrabold: 800;
   --fontWeight-black: 900;
-  --fontSize-root: 16px;
+  --fontSize-root: "16px";
   --lineHeight-none: 1;
   --lineHeight-tight: 1.1;
   --lineHeight-normal: 1.5;
@@ -56,8 +56,8 @@
 /* HTML elements */
 
 *,
-:after,
-:before {
+::after,
+::before {
   box-sizing: border-box;
 }
 
@@ -152,12 +152,11 @@ h6 > a {
 
 p {
   line-height: var(--lineHeight-relaxed);
-  --baseline-multiplier: 0.179;
-
-  --x-height-multiplier: 0.35;
-
   margin: var(--spacing-0) var(--spacing-0) var(--spacing-8) var(--spacing-0);
   padding: var(--spacing-0);
+
+  --baseline-multiplier: 0.179;
+  --x-height-multiplier: 0.35;
 }
 
 ul,
@@ -326,5 +325,5 @@ a:focus {
 }
 
 .min-h-body {
-  min-height: calc(100vh - 5rem);
+  min-height: calc(100vh - 11.5rem);
 }

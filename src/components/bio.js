@@ -42,7 +42,7 @@ const Bio = ({ navMenus, langs = {} }) => {
   const avatar = data?.avatar?.childImageSharp?.fixed
   const { langKey, defaultLangKey } = langs
   const homeUrl = langKey === defaultLangKey ? '/' : `/${langKey}/`
-  const linkClass = 'my-1 text-sm text-gray-700 dark:text-gray-200 font-medium hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0'
+  const linkClass = 'my-1 text-sm text-gray-700 font-medium hover:text-indigo-500 md:mx-4 md:my-0'
 
   return (
     <>
