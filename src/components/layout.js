@@ -3,6 +3,7 @@ import Bio from "../components/bio"
 import SEO from "../components/seo"
 import { IntlProvider } from 'react-intl'
 import messages from '../locales'
+import { ThemeProvider } from "./theme-context"
 
 import 'intl'
 
@@ -15,15 +16,17 @@ const Layout = ({ location, title, children, navMenus, langs, author = { name: '
       key={langs.defaultLangKey}
       messages={messages[langKey]}
     >
-      <div className="">
-        <SEO title="" />
-        <Bio navMenus={navMenus} langs={langs} />
-        <header />
-        <main>{children}</main>
-        <footer className="global-wrapper flex justify-center">
-          Copyright © {new Date().getFullYear()} {author?.name}
-        </footer>
-      </div>
+      <ThemeProvider>
+        <div className="bg-primary text-primary min-h-screen">
+          <SEO title="" />
+          <Bio navMenus={navMenus} langs={langs} />
+          <header />
+          <main>{children}</main>
+          <footer className="global-wrapper flex justify-center">
+            Copyright © {new Date().getFullYear()} {author?.name}
+          </footer>
+        </div>
+      </ThemeProvider>
     </IntlProvider>
   )
 }

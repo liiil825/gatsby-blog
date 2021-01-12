@@ -1,7 +1,8 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const createBlog = require('./createPages/blog')
-const commonPage = require('./createPages/common')
+const createBlog = require('./gatsby/blog')
+const commonPage = require('./gatsby/common')
+const onCreateSchema = require('./gatsby/schema')
 
 exports.createPages = async (props) => {
   await Promise.all([createBlog(props), commonPage(props)])
@@ -21,52 +22,13 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
+// exports.onCreateWebpackConfig = ({ actions, loaders, getConfig }) => {
+//   const config = getConfig()
+//   config.externals = {
+//     'react': 'React'
+//   }
 
-  // Explicitly define the siteMetadata {} object
-  // This way those will always be defined even if removed from gatsby-config.js
+//   actions.replaceWebpackConfig(config)
+// }
 
-  // Also explicitly define the Markdown frontmatter
-  // This way the "MarkdownRemark" queries will return `null` even when no
-  // blog posts are stored inside "content/blog" instead of returning an error
-  createTypes(`
-    type SiteSiteMetadata {
-      author: Author
-      siteUrl: String
-      social: Social
-      languages: Lang
-    }
-
-    type Author {
-      name: String
-      summary: String
-    }
-
-    type Social {
-      twitter: String
-    }
-
-    type Lang {
-      langs: [String]
-      defaultLangKey: String
-    }
-
-    type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-      fields: Fields
-      prevId: String
-      nextId: String
-    }
-
-    type Frontmatter {
-      title: String
-      description: String
-      date: Date @dateformat
-    }
-
-    type Fields {
-      slug: String
-    }
-  `)
-}
+exports.createSchemaCustomization = onCreateSchema

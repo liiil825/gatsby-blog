@@ -11,6 +11,7 @@ import Image from "gatsby-image"
 import { Link } from "gatsby"
 import NavLang from './dropdown-language'
 import { FormattedMessage } from 'react-intl'
+import DarkButton from './dark-button'
 
 const Bio = ({ navMenus, langs = {} }) => {
   const data = useStaticQuery(graphql`
@@ -44,7 +45,7 @@ const Bio = ({ navMenus, langs = {} }) => {
 
   return (
     <>
-      <nav className="bg-white dark:bg-gray-800 shadow">
+      <nav className="shadow">
         <div className="container mx-auto px-6 py-3 md:flex md:justify-between md:items-center">
           <div className="flex flex-1 justify-between items-center">
               <div>
@@ -71,6 +72,7 @@ const Bio = ({ navMenus, langs = {} }) => {
                     <FormattedMessage id="About" defaultMessage="About" />
                   </Link>
                   <NavLang langs={navMenus} />
+                  <DarkButton />
               </div>
           </div>
       </div>
@@ -80,4 +82,3 @@ const Bio = ({ navMenus, langs = {} }) => {
 }
 
 export default Bio
-
