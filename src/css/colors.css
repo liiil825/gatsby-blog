@@ -105,7 +105,7 @@
   --color-cerulean-700: #16659c;
   --color-cerulean-800: #164d73;
   --color-cerulean-900: #143e59;
-  
+
   @apply light;
 }
 

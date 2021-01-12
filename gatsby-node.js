@@ -1,10 +1,10 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
-const createBlog = require('./gatsby/blog')
-const commonPage = require('./gatsby/common')
-const onCreateSchema = require('./gatsby/schema')
+const createBlog = require("./gatsby/blog")
+const commonPage = require("./gatsby/common")
+const onCreateSchema = require("./gatsby/schema")
 
-exports.createPages = async (props) => {
+exports.createPages = async props => {
   await Promise.all([createBlog(props), commonPage(props)])
 }
 

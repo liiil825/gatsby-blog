@@ -5,11 +5,15 @@
  */
 
 // You can delete this file if you're not using it
-const { langs, defaultLangKey } = require('../src/locales/languages')
-const path = require('path')
-const { createLanguagesObject, getCurrentLangKey, getBlogUrl } = require('../src/utils/localization')
+const { langs, defaultLangKey } = require("../src/locales/languages")
+const path = require("path")
+const {
+  createLanguagesObject,
+  getCurrentLangKey,
+  getBlogUrl,
+} = require("../src/utils/localization")
 
-const query = (lang) => (
+const query = lang =>
   `
     {
       allMarkdownRemark(
@@ -33,9 +37,8 @@ const query = (lang) => (
       }
     }
   `
-)
 
-module.exports =  ({ graphql, actions, reporter }) => 
+module.exports = ({ graphql, actions, reporter }) =>
   new Promise(resolve => {
     const { createPage } = actions
 
@@ -56,27 +59,34 @@ module.exports =  ({ graphql, actions, reporter }) =>
         const posts = data.allMarkdownRemark.nodes
 
         // Create each individual project
-        Promise.all(posts.map((post, index) => {
-          const prevId = index === 0 ? null : posts[index - 1].id
-          const nextId = index === posts.length - 1 ? null : posts[index + 1].id
-          const language = getCurrentLangKey(post.fields.slug)
-          const localPath = getBlogUrl(language, defaultLangKey, post.fields.slug)
-
-          // create blog posts pages
-          // but only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
-          // `context` is available in the template as a prop and as a variable in graphql
-          createPage({
-            path: localPath,
-            component: blogPost,
-            context: {
-              id: post.id,
-              prevId,
-              nextId,
-              langKey: language,
+        Promise.all(
+          posts.map((post, index) => {
+            const prevId = index === 0 ? null : posts[index - 1].id
+            const nextId =
+              index === posts.length - 1 ? null : posts[index + 1].id
+            const language = getCurrentLangKey(post.fields.slug)
+            const localPath = getBlogUrl(
+              language,
               defaultLangKey,
-            },
+              post.fields.slug
+            )
+
+            // create blog posts pages
+            // but only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
+            // `context` is available in the template as a prop and as a variable in graphql
+            createPage({
+              path: localPath,
+              component: blogPost,
+              context: {
+                id: post.id,
+                prevId,
+                nextId,
+                langKey: language,
+                defaultLangKey,
+              },
+            })
           })
-        })).then(resolve)
+        ).then(resolve)
       })
     })
   })

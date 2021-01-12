@@ -3,8 +3,8 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { getBlogUrl, initLangMenu } from '../utils/localization'
-import messages from '../locales'
+import { getBlogUrl, initLangMenu } from "../utils/localization"
+import messages from "../locales"
 
 const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -24,11 +24,10 @@ const BlogIndex = ({ data, location, pageContext }) => {
         navMenus={langObj.navMenus}
         langs={languages}
         location={location}
-        title={siteTitle}>
+        title={siteTitle}
+      >
         <SEO title="" />
-        <p>
-          {messages[langKey]['No blog posts']}  
-        </p>
+        <p>{messages[langKey]["No blog posts"]}</p>
       </Layout>
     )
   }
@@ -82,9 +81,7 @@ const BlogIndex = ({ data, location, pageContext }) => {
 export default BlogIndex
 
 export const pageQuery = graphql`
-  query (
-    $langRegex: String = "/.zh/"
-  ) {
+  query($langRegex: String = "/.zh/") {
     site {
       siteMetadata {
         title
@@ -97,12 +94,8 @@ export const pageQuery = graphql`
         }
       }
     }
-    allMarkdownRemark (
-      filter: {
-        fields: {
-          slug: { regex: $langRegex }
-        }
-      }
+    allMarkdownRemark(
+      filter: { fields: { slug: { regex: $langRegex } } }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {

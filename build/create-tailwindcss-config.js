@@ -1,11 +1,12 @@
-const fs = require('fs')
-const colors = require('./colors.js');
+const fs = require("fs")
+const colors = require("./colors.js")
+const path = require("path")
 
 const { brand } = colors
 
-let tempStr = ``;
+let tempStr = ``
 for (key in colors) {
-  if (key === 'brand') {
+  if (key === "brand") {
     continue
   }
   tempStr = `${tempStr}        ${key}: {`
@@ -49,7 +50,11 @@ ${tempStr}      },
 }
 `
 
-fs.writeFile('../tailwind.config.js', data, function (err) {
-  if (err) return console.log(err);
-  console.log('finish!!!');
-});
+fs.writeFile(
+  path.join(__dirname, "../tailwind.config.js"),
+  data,
+  function (err) {
+    if (err) return console.log(err)
+    console.log("tailwind.config.js finish!!!")
+  }
+)

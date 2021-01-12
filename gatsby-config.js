@@ -1,4 +1,4 @@
-const languages = require('./src/locales/languages')
+const languages = require("./src/locales/languages")
 
 module.exports = {
   siteMetadata: {
@@ -12,7 +12,7 @@ module.exports = {
     social: {
       twitter: `VoskiLee`,
     },
-    languages
+    languages,
   },
   plugins: [
     {

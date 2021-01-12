@@ -1,11 +1,12 @@
-const fs = require('fs')
-const colors = require('./colors.js');
+const fs = require("fs")
+const colors = require("./colors.js")
+const path = require("path")
 
 const { brand } = colors
 
-let tempStr = ``;
+let tempStr = ``
 for (key in colors) {
-  if (key === 'brand') {
+  if (key === "brand") {
     continue
   }
   for (num in colors[key]) {
@@ -13,6 +14,8 @@ for (key in colors) {
   `
   }
 }
+
+tempStr = tempStr.slice(0, -2)
 
 const data = `:root {
   --color-primary: ${brand};
@@ -55,7 +58,11 @@ const data = `:root {
 }
 `
 
-fs.writeFile('../src/css/colors.css', data, function (err) {
-  if (err) return console.log(err);
-  console.log('finish!!!');
-});
+fs.writeFile(
+  path.join(__dirname, "../src/css/colors.css"),
+  data,
+  function (err) {
+    if (err) return console.log(err)
+    console.log("src/css/colors.css finish!!!")
+  }
+)

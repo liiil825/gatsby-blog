@@ -1,14 +1,13 @@
 {
-	"extends": "stylelint-config-standard",
+  "extends": "stylelint-config-standard",
   "rules": {
-    "at-rule-no-unknown": [ true, {
-      "ignoreAtRules": [
-        "extends",
-        "tailwind"
-      ]
-    }],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["extends", "tailwind"]
+      }
+    ],
     "block-no-empty": null,
-    "ignoreFiles": [],
-    "unit-whitelist": ["%", "vw", "vh", "em", "rem", "s"]
+    "unit-allowed-list": ["%", "vw", "vh", "em", "rem", "ms", "s", "deg"]
   }
 }

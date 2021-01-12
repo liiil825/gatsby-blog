@@ -1,13 +1,20 @@
 import React from "react"
 import Bio from "../components/bio"
 import SEO from "../components/seo"
-import { IntlProvider } from 'react-intl'
-import messages from '../locales'
+import { IntlProvider } from "react-intl"
+import messages from "../locales"
 import { ThemeProvider } from "./theme-context"
 
-import 'intl'
+import "intl"
 
-const Layout = ({ location, title, children, navMenus, langs, author = { name: '' } }) => {
+const Layout = ({
+  location,
+  title,
+  children,
+  navMenus,
+  langs,
+  author = { name: "" },
+}) => {
   const { langKey } = langs
 
   return (

@@ -1,21 +1,21 @@
-import React from "react";
+import React from "react"
 import { Link } from "gatsby"
-import { createPopper } from "@popperjs/core";
-import { FormattedMessage } from 'react-intl'
+import { createPopper } from "@popperjs/core"
+import { FormattedMessage } from "react-intl"
 
 const LanguageDropdown = ({ langs = [], className }) => {
   // dropdown props
-  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
-  const btnDropdownRef = React.createRef();
-  const popoverDropdownRef = React.createRef();
+  const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false)
+  const btnDropdownRef = React.createRef()
+  const popoverDropdownRef = React.createRef()
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "bottom-end"
+      placement: "bottom-end",
     })
-    setDropdownPopoverShow(true);
+    setDropdownPopoverShow(true)
   }
   const closeDropdownPopover = () => {
-    setDropdownPopoverShow(false);
+    setDropdownPopoverShow(false)
   }
   return (
     <>
@@ -24,12 +24,12 @@ const LanguageDropdown = ({ langs = [], className }) => {
         href="#pablo"
         ref={btnDropdownRef}
         onClick={e => {
-          e.preventDefault();
-          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
+          e.preventDefault()
+          dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover()
         }}
       >
         <div className="items-center flex">
-          <FormattedMessage id="Translations" defaultMessage="Translations"/>
+          <FormattedMessage id="Translations" defaultMessage="Translations" />
         </div>
       </a>
       <div
@@ -40,21 +40,20 @@ const LanguageDropdown = ({ langs = [], className }) => {
         }
         style={{ minWidth: "12rem" }}
       >
-        {
-          langs.filter(lang => !lang.selected).map(lang => (
-            <Link 
-              className={
-                `text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-denim-500 hover:text-white  dark:hover:text-white dark:hover:color-primary`
-              }
-              to={lang.url} key={lang.langKey}>
-                <FormattedMessage id={lang.langKey} />
+        {langs
+          .filter(lang => !lang.selected)
+          .map(lang => (
+            <Link
+              className={`text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800 hover:bg-denim-500 hover:text-white  dark:hover:text-white dark:hover:color-primary`}
+              to={lang.url}
+              key={lang.langKey}
+            >
+              <FormattedMessage id={lang.langKey} />
             </Link>
-          ))
-
-        }
+          ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default LanguageDropdown;
+export default LanguageDropdown

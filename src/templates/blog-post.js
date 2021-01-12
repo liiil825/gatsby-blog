@@ -2,12 +2,12 @@ import React from "react"
 import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import { initLangMenu } from '../utils/localization'
+import { initLangMenu } from "../utils/localization"
 
 const BlogPostTemplate = ({ data, location, pageContext }) => {
   const post = data.markdownRemark
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const { languages } = data.site.siteMetadata
+  const { languages, author } = data.site.siteMetadata
   const { previous, next } = data
   const { pathname } = location
   languages.langKey = pageContext.langKey
@@ -19,7 +19,13 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
   })
 
   return (
-    <Layout navMenus={langObj.navMenus} langs={languages} className="" location={location} title={siteTitle}>
+    <Layout
+      navMenus={langObj.navMenus}
+      langs={languages}
+      author={author}
+      location={location}
+      title={siteTitle}
+    >
       <article
         className="global-wrapper blog-post"
         itemScope
@@ -34,8 +40,7 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
           itemProp="articleBody"
         />
         <hr />
-        <footer>
-        </footer>
+        <footer></footer>
       </article>
       <nav className="global-wrapper blog-post-nav">
         <ul
@@ -70,14 +75,13 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
-    $id: String!
-    $prevId: String
-    $nextId: String
-  ) {
+  query BlogPostBySlug($id: String!, $prevId: String, $nextId: String) {
     site {
       siteMetadata {
         title
+        author {
+          name
+        }
         languages {
           defaultLangKey
           langs

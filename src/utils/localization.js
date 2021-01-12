@@ -3,8 +3,8 @@ const localizeUrl = (url, language, defaultLangKey) => {
   // /hello-world/index.en/ -> /en/hello-world
   // let url = slug.
   return `/${language}${url}`
-    .replace(new RegExp(`/index.${language}/`), '')
-    .replace(new RegExp(`^/${defaultLangKey}`), '')
+    .replace(new RegExp(`/index.${language}/`), "")
+    .replace(new RegExp(`^/${defaultLangKey}`), "")
 }
 
 const getBlogUrl = (language, defaultLangKey, url) => {
@@ -14,18 +14,18 @@ const getBlogUrl = (language, defaultLangKey, url) => {
   return localizeUrl(`/blog${url}`, language, defaultLangKey)
 }
 
-const getCurrentLangKey = (slug) => {
+const getCurrentLangKey = slug => {
   // /hello-world/index.en
   // /hello-world/index.zh
-  const arr = slug.split('.')
+  const arr = slug.split(".")
   const len = arr.length
   if (len < 1) {
-    new Error('Please name the markdown file to .en.md or .zh.md')
+    new Error("Please name the markdown file to .en.md or .zh.md")
   }
-  return arr[len - 1].replace('/', '')
+  return arr[len - 1].replace("/", "")
 }
 
-const getLangUrl = (url, { langKey = '', langs, defaultLangKey }) => {
+const getLangUrl = (url, { langKey = "", langs, defaultLangKey }) => {
   // /hello-world/ -> /en/hello-world
   // /hello-world/ -> /hello-world
   // let lang = langKey
@@ -35,8 +35,8 @@ const getLangUrl = (url, { langKey = '', langs, defaultLangKey }) => {
   }
 
   return `/${langKey}${url}`
-    .replace(new RegExp(`/${lang}/`), '/')
-    .replace(new RegExp(`^/${defaultLangKey}`), '')
+    .replace(new RegExp(`/${lang}/`), "/")
+    .replace(new RegExp(`^/${defaultLangKey}`), "")
 }
 
 const getLangKeyFromUrl = (url, { langs, defaultLangKey }) => {
@@ -65,13 +65,17 @@ const initLangMenu = ({
   defaultLangKey,
   previous,
   next,
-  prefix = 'blog'
- }) => {
+  prefix = "blog",
+}) => {
   let url = pathname
   const navMenus = getLangMenus(url, langs, defaultLangKey)
   let langKey = getLangKeyFromUrl(url, { langs, defaultLangKey })
-  let prevUrl = !previous ? '' : localizeUrl(`/${prefix}${previous.fields.slug}`, langKey, defaultLangKey)
-  let nextUrl = !next ? '' : localizeUrl(`/${prefix}${next.fields.slug}`, langKey, defaultLangKey)
+  let prevUrl = !previous
+    ? ""
+    : localizeUrl(`/${prefix}${previous.fields.slug}`, langKey, defaultLangKey)
+  let nextUrl = !next
+    ? ""
+    : localizeUrl(`/${prefix}${next.fields.slug}`, langKey, defaultLangKey)
 
   return {
     navMenus,
