@@ -18,7 +18,7 @@ const Bio = ({ navMenus, langs = {} }) => {
     query BioQuery {
       avatar: file(absolutePath: { regex: "/logo.jpg/" }) {
         childImageSharp {
-          fixed(width: 50, height: 50, quality: 95) {
+          fixed(width: 80, height: 80) {
             ...GatsbyImageSharpFixed
           }
         }

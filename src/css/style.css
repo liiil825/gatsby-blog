@@ -311,5 +311,5 @@ a:focus {
 }
 
 .min-h-body {
-  min-height: calc(100vh - 11.5rem);
+  min-height: calc(100vh - 13.375rem);
 }
