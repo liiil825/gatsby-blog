@@ -67,7 +67,7 @@
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,sass,json,md}\"",
     "start": "npm run develop",
     "init-theme": "node ./build/create-colors && node ./build/create-tailwindcss-config.js",
-    "stylelint": "stylelint ./src/**/*.css ./src/**/*.scss",
+    "stylelint": "stylelint ./src/**/*.css",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"

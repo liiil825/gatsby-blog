@@ -14,25 +14,25 @@ $height: 50px / 2;
   position: relative;
   width: $width;
   height: $height;
-  background-color: #83D8FF;
+  background-color: #83d8ff;
   border-radius: 90px - 6;
   transition: background-color 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  
+
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     left: $width / 2 * -1 + 5;
     top: $height * 0.3;
     font-size: var(--fontSize-root);
   }
-  
+
   &:after {
-    content: '';
+    content: "";
     position: absolute;
-    right: $width / 2 * + 5;
+    right: $width / 2 * +5;
     top: $height * 0.3;
     font-size: 18px;
-    color: #749ED7;
+    color: #749ed7;
   }
 }
 
@@ -44,34 +44,34 @@ $height: 50px / 2;
   left: 3px;
   width: $width / 2 + 1;
   height: $width / 2 + 1;
-  background-color: #FFCF96;
+  background-color: #ffcf96;
   border-radius: 50px;
-  box-shadow: 0 2px 6px rgba(0,0,0,.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 400ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  transform:  rotate(-45deg);
-  
+  transform: rotate(-45deg);
+
   .crater {
     position: absolute;
-    background-color: #E8CDA5;
+    background-color: #e8cda5;
     opacity: 0;
     transition: opacity 200ms ease-in-out;
     border-radius: 100%;
   }
-  
+
   .crater--1 {
     top: 18 / 50 * $height;
     left: 10 / 90 $width;
     width: 4px;
     height: 4px;
   }
-  
+
   .crater--2 {
     top: 28 / 50 * $height;
     left: 22 / 90 * $width;
     width: 6px;
     height: 6px;
   }
-  
+
   .crater--3 {
     top: 10 / 50 * $height;
     left: 25 / 90 * $width;
@@ -124,7 +124,7 @@ $height: 50px / 2;
   z-index: 0;
   width: 2px;
   height: 2px;
-  transform: translate3d(3px,0,0);
+  transform: translate3d(3px, 0, 0);
 }
 
 .star--5 {
@@ -133,7 +133,7 @@ $height: 50px / 2;
   z-index: 0;
   width: 3px;
   height: 3px;
-  transform: translate3d(3px,0,0);
+  transform: translate3d(3px, 0, 0);
 }
 
 .star--6 {
@@ -142,50 +142,52 @@ $height: 50px / 2;
   z-index: 0;
   width: 2px;
   height: 2px;
-  transform: translate3d(3px,0,0);
+  transform: translate3d(3px, 0, 0);
 }
 
 input:checked {
   + .toggle {
-    background-color: #749DD6;
-  
+    background-color: #749dd6;
+
     &:before {
-      color: #749ED7;
+      color: #749ed7;
     }
 
     &:after {
       color: #ffffff;
     }
-    
+
     .toggle__handler {
-      background-color: #FFE5B5;
+      background-color: #ffe5b5;
       transform: translate3d(40 / 90 * $width, 0, 0) rotate(0);
-  
-      .crater { opacity: 1; }
+
+      .crater {
+        opacity: 1;
+      }
     }
-    
+
     .star--1 {
       width: 2px;
       height: 2px;
     }
-    
+
     .star--2 {
       width: 4px;
       height: 4px;
       transform: translate3d(-5px, 0, 0);
     }
-    
+
     .star--3 {
       width: 2px;
       height: 2px;
       transform: translate3d(-7px, 0, 0);
     }
-    
+
     .star--4,
     .star--5,
     .star--6 {
       opacity: 1;
-      transform: translate3d(0,0,0);
+      transform: translate3d(0, 0, 0);
     }
     .star--4 {
       transition: all 300ms 200ms cubic-bezier(0.445, 0.05, 0.55, 0.95);

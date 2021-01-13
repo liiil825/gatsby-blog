@@ -74,7 +74,15 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [require("tailwindcss")()],
+        sassOptions: {
+          precision: 6,
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-typography`,
       options: {
