@@ -1,0 +1,25 @@
+{
+  "envId": "{{envId}}",
+  "framework": {
+    "plugins": {
+      "function": {
+        "use": "@cloudbase/framework-plugin-function",
+        "inputs": {
+          "functionRootPath": "./cloudfunctions",
+          "functions": [
+            {
+              "name": "helloworld",
+              "timeout": 5,
+              "envVariables": {},
+              "runtime": "Nodejs10.15",
+              "memory": 128
+            }
+          ],
+          "servicePaths": {
+            "helloworld": "/helloworld"
+          }
+        }
+      }
+    }
+  }
+}
