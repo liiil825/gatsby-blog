@@ -64,15 +64,6 @@ const Bio = ({ navMenus, langs = {} }) => {
             </div>
 
             <div className="flex flex-col items-center md:flex-row md:mx-6">
-              <Link className={linkClass} to="#">
-                <FormattedMessage id="Home" defaultMessage="Home" />
-              </Link>
-              <Link className={linkClass} to="#">
-                <FormattedMessage id="Contact" defaultMessage="Contact" />
-              </Link>
-              <Link className={linkClass} to="#">
-                <FormattedMessage id="About" defaultMessage="About" />
-              </Link>
               <NavLang className={linkClass} langs={navMenus} />
               <DarkButton className={linkClass} />
             </div>

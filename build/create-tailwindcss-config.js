@@ -1,8 +1,8 @@
 const fs = require("fs")
-const colors = require("./colors.js")
+const config = require("./colors.js")
 const path = require("path")
 
-const { brand } = colors
+const { colors } = config.theme?.extend
 
 let tempStr = ``
 for (key in colors) {
