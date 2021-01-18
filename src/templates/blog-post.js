@@ -24,7 +24,7 @@ const BlogPostTemplate = ({ data, location, pageContext }) => {
       langs={languages}
       author={author}
       location={location}
-      title={siteTitle}
+      title={post.frontmatter.title}
     >
       <article
         className="global-wrapper blog-post"

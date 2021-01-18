@@ -26,7 +26,6 @@ const BlogIndex = ({ data, location, pageContext }) => {
         location={location}
         title={siteTitle}
       >
-        <SEO title="" />
         <p>{messages[langKey]["No blog posts"]}</p>
       </Layout>
     )
@@ -40,7 +39,6 @@ const BlogIndex = ({ data, location, pageContext }) => {
       title={siteTitle}
       author={author}
     >
-      <SEO title="" />
       <ol className="global-wrapper" style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug

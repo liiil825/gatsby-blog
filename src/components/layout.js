@@ -13,7 +13,7 @@ const Layout = ({
   children,
   navMenus,
   langs,
-  author = { name: "" },
+  author = { name: '' },
 }) => {
   const { langKey } = langs
 
@@ -25,7 +25,7 @@ const Layout = ({
     >
       <ThemeProvider>
         <div className="bg-primary text-primary">
-          <SEO title="" />
+          <SEO title={title} />
           <Bio navMenus={navMenus} langs={langs} />
           <header />
           <main className="min-h-body">{children}</main>
