@@ -64,6 +64,7 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "develop": "gatsby develop",
+    "deploy": "npm run build && tcb framework deploy",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css,scss,sass,json,md}\"",
     "start": "npm run develop",
     "init-theme": "node ./build/create-colors && node ./build/create-tailwindcss-config.js",
